@@ -174,6 +174,7 @@ multiPP' dynlStr focusPP unfocusPP handles = do
   traverse_ put . getLast
     =<< execWriterT . (io . zipWithM_ hPutStrLn handles <=< mapM pickPP) . catMaybes
     =<< mapM screenWorkspace (zipWith const [0 .. ] handles)
+  put st
 
 getScreens :: MonadIO m => m [ScreenId]
 getScreens = liftIO $ do
